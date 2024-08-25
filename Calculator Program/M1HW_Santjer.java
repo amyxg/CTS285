@@ -50,6 +50,21 @@ public class M1HW_Santjer {
         }
     }
 
+    // verifies if user input is an integer
+    public static int checkValidInteger(Scanner s, String prompt) {
+        System.out.print(prompt);
+        while (!s.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+            
+            // reads and discards invalid input
+            s.next(); 
+
+            System.out.print(prompt);
+        }
+        return s.nextInt();
+    }
+
+
     // display repeat and menu option
     public static void secondaryMenu(Scanner userInput, int initialChoice){
         System.out.println("1. Repeat");
@@ -94,12 +109,8 @@ public class M1HW_Santjer {
         Scanner s = new Scanner(System.in);
         System.out.println("");
         System.out.println("Add");
-        System.out.print("Enter a number: ");
-        int firstNumber = s.nextInt();
-        s.nextLine();
-
-        System.out.print("Enter a number: ");
-        int secondNumber = s.nextInt();
+        int firstNumber = checkValidInteger(s, "Enter the a number: ");
+        int secondNumber = checkValidInteger(s, "Enter the another number: ");
         //results
         System.out.println(firstNumber + " + " + secondNumber + " = " + (firstNumber + secondNumber));
     }
@@ -109,12 +120,8 @@ public class M1HW_Santjer {
         Scanner s = new Scanner(System.in);
         System.out.println("");
         System.out.println("Subtract");
-        System.out.print("Enter a number: ");
-        int firstNumber = s.nextInt();
-        s.nextLine();
-
-        System.out.print("Enter a number: ");
-        int secondNumber = s.nextInt();
+        int firstNumber = checkValidInteger(s, "Enter the a number: ");
+        int secondNumber = checkValidInteger(s, "Enter the another number: ");
         //results
         System.out.println(firstNumber + " - " + secondNumber + " = " + (firstNumber - secondNumber));
     }
@@ -124,12 +131,8 @@ public class M1HW_Santjer {
             Scanner s = new Scanner(System.in);
             System.out.println("");
             System.out.println("Divide");
-            System.out.print("Enter a number: ");
-            int firstNumber = s.nextInt();
-            s.nextLine();
-    
-            System.out.print("Enter a number: ");
-            int secondNumber = s.nextInt();
+            int firstNumber = checkValidInteger(s, "Enter the a number: ");
+            int secondNumber = checkValidInteger(s, "Enter the another number: ");
             //results
             System.out.println(firstNumber + " / " + secondNumber + " = " + ((double)firstNumber / secondNumber));
         }
@@ -138,13 +141,8 @@ public class M1HW_Santjer {
         public static void multiplyNumber(){
             Scanner s = new Scanner(System.in);
             System.out.println("");
-            System.out.println("Multiply");
-            System.out.print("Enter a number: ");
-            int firstNumber = s.nextInt();
-            s.nextLine();
-    
-            System.out.print("Enter a number: ");
-            int secondNumber = s.nextInt();
+            int firstNumber = checkValidInteger(s, "Enter the a number: ");
+            int secondNumber = checkValidInteger(s, "Enter the another number: ");
             //results
             System.out.println(firstNumber + " x " + secondNumber + " = " + (firstNumber * secondNumber));
         }
