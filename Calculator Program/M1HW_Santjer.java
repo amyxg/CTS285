@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import mathFormula;
 
 public class M1HW_Santjer {
     public static void main(String[] args) {
@@ -31,19 +32,19 @@ public class M1HW_Santjer {
         // determine if user input is between 1-5 with following function to execute, or invalid option
         switch (userChoice){
             case 1:
-                addNumber();
+                mathFormula.addNumber();
                 secondaryMenu(userInput, userChoice);
                 break;
             case 2:
-                subtractNumber();
+                mathFormula.subtractNumber();
                 secondaryMenu(userInput, userChoice);
                 break;
             case 3:
-                divideNumber();
+                mathFormula.divideNumber();
                 secondaryMenu(userInput, userChoice);
                 break;
             case 4:
-                multiplyNumber();
+                mathFormula.multiplyNumber();
                 secondaryMenu(userInput, userChoice);
                 break;
             case 5:
@@ -92,16 +93,16 @@ public class M1HW_Santjer {
                             // repeat the operation based on the initial choice
                             switch (initialChoice) {
                                 case 1:
-                                    addNumber();
+                                    mathFormula.addNumber();
                                     break;
                                 case 2:
-                                    subtractNumber();
+                                    mathFormula.subtractNumber();
                                     break;
                                 case 3:
-                                    divideNumber();
+                                    mathFormula.divideNumber();
                                     break;
                                 case 4:
-                                    multiplyNumber();
+                                    mathFormula.multiplyNumber();
                                     break;
                             }
                             secondaryMenu(userInput, initialChoice);
@@ -121,47 +122,4 @@ public class M1HW_Santjer {
             }
         }
     }
-
-    // adds two integers and display results
-    public static void addNumber(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("");
-        System.out.println("Add");
-        int firstNumber = checkValidInteger(s, "Enter a number: ");
-        int secondNumber = checkValidInteger(s, "Enter another number: ");
-        //results
-        System.out.println(firstNumber + " + " + secondNumber + " = " + (firstNumber + secondNumber));
-    }
-
-    // subtract two integers and display results
-    public static void subtractNumber(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("");
-        System.out.println("Subtract");
-        int firstNumber = checkValidInteger(s, "Enter a number: ");
-        int secondNumber = checkValidInteger(s, "Enter another number: ");
-        //results
-        System.out.println(firstNumber + " - " + secondNumber + " = " + (firstNumber - secondNumber));
-    }
-
-        // divide two integers and display results (as a decimal)
-        public static void divideNumber(){
-            Scanner s = new Scanner(System.in);
-            System.out.println("");
-            System.out.println("Divide");
-            int firstNumber = checkValidInteger(s, "Enter a number: ");
-            int secondNumber = checkValidInteger(s, "Enter another number: ");
-            //results
-            System.out.println(firstNumber + " / " + secondNumber + " = " + ((double)firstNumber / secondNumber));
-        }
-
-        // multiply two integers and display results
-        public static void multiplyNumber(){
-            Scanner s = new Scanner(System.in);
-            System.out.println("");
-            int firstNumber = checkValidInteger(s, "Enter a number: ");
-            int secondNumber = checkValidInteger(s, "Enter another number: ");
-            //results
-            System.out.println(firstNumber + " x " + secondNumber + " = " + (firstNumber * secondNumber));
-        }
 }
