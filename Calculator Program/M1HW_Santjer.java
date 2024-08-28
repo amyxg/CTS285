@@ -1,6 +1,5 @@
 
 import java.util.Scanner;
-import mathFormula;
 
 public class M1HW_Santjer {
     public static void main(String[] args) {
@@ -17,26 +16,23 @@ public class M1HW_Santjer {
         System.out.println("5. Exit");
         System.out.print("Enter a number: ");
         Scanner userInput = new Scanner(System.in);
-        int userChoice;
+
         // verifies if user entered value is an integer
-        while (true) {
-            if (userInput.hasNextInt()) {
-                userChoice = userInput.nextInt();
-                break; 
-            } else {
-                System.out.println("Invalid option. Please enter an integer.");
-                userInput.next(); 
-            }
-        }
+        int userChoice = checkValidInteger(userInput);
 
         // determine if user input is between 1-5 with following function to execute, or invalid option
         switch (userChoice){
             case 1:
-                mathFormula.addNumber();
+                System.out.println("\nAdd");
+                int[] numbers = getUserIntegers();
+                System.out.println(numbers[0] + " + " + numbers[1] + " = " + formula.addNumber(numbers[0], numbers[1]));
                 secondaryMenu(userInput, userChoice);
                 break;
-            case 2:
-                mathFormula.subtractNumber();
+            /* case 2:
+                System.out.println("");
+                System.out.println("Add");
+                int[] numbers = getUserIntegers();
+                System.out.println(numbers[0] + " + " + numbers[1] + " = " + formula.addNumber(numbers[0], numbers[1]));
                 secondaryMenu(userInput, userChoice);
                 break;
             case 3:
@@ -46,35 +42,39 @@ public class M1HW_Santjer {
             case 4:
                 mathFormula.multiplyNumber();
                 secondaryMenu(userInput, userChoice);
-                break;
+                break; */
             case 5:
-                System.out.println("");
-                System.out.println ("Goodbye.");
+                System.out.println ("\nGoodbye.");
                 break;
             default:
                 // print out error message if not integer between 1-5
-                System.out.println("");
-                System.out.println("Invalid option. Please select a number between 1-5.");
-                System.out.println("");
+                System.out.println("Invalid option. Please select a number between 1-5.\n");
                 displayMenu();
                 break;
         }
     }
 
+    // get user inputs (two) and put in an array
+    public static int[] getUserIntegers(){
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter the first number: ");
+        int firstNumber = checkValidInteger(s);
+        System.out.print("Enter the second number: ");
+        int secondNumber = checkValidInteger(s);
+
+        return new int[]{firstNumber, secondNumber};
+    }
+
     // verifies if user input is an integer
-    public static int checkValidInteger(Scanner s, String prompt) {
-        System.out.print(prompt);
+    public static int checkValidInteger(Scanner s) {
         while (!s.hasNextInt()) {
-            System.out.println("Invalid input. Please enter a valid integer.");
+            System.out.print("Invalid input. Please enter an integer: ");
             
             // reads and discards invalid input
-            s.next(); 
-
-            System.out.print(prompt);
+            s.next();
         }
         return s.nextInt();
     }
-
 
     // display repeat and menu option
     public static void secondaryMenu(Scanner userInput, int initialChoice){
@@ -93,9 +93,13 @@ public class M1HW_Santjer {
                             // repeat the operation based on the initial choice
                             switch (initialChoice) {
                                 case 1:
-                                    mathFormula.addNumber();
+                                    System.out.println("");
+                                    System.out.println("Add");
+                                    int[] numbers = getUserIntegers();
+                                    System.out.println(numbers[0] + " + " + numbers[1] + " = " + formula.addNumber(numbers[0], numbers[1]));
+                                    secondaryMenu(userInput, initialChoice);
                                     break;
-                                case 2:
+                                /* case 2:
                                     mathFormula.subtractNumber();
                                     break;
                                 case 3:
@@ -103,7 +107,7 @@ public class M1HW_Santjer {
                                     break;
                                 case 4:
                                     mathFormula.multiplyNumber();
-                                    break;
+                                    break; */
                             }
                             secondaryMenu(userInput, initialChoice);
                             break;
@@ -111,15 +115,16 @@ public class M1HW_Santjer {
                             displayMenu();
                             break;
                         default:
-                            System.out.println("Invalid option. Please enter 1 or 2.");
+                            System.out.print("Invalid option. Please enter 1 or 2: "); //need to ensure they still enter a integer here
                             break;
                     }
                 }
                 break; 
             } else {
-                System.out.println("Invalid option. Please enter an integer.");
+                System.out.print("Invalid option. Please enter an integer: ");
                 userInput.next(); 
             }
         }
     }
+    
 }
