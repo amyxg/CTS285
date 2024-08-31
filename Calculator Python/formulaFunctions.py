@@ -1,8 +1,14 @@
 def displayMenu():
     """
-    displays a menu option 1-5
+    Parameters
+    ----------
+    None.  
+
+    Returns
+    -------
+    None.
     """
-    print("Welcome to the calculator program.")
+    print("\nWelcome to the calculator program.")
     print("1. Add")
     print("2. Subtract")
     print("3. Divide ")
@@ -12,7 +18,15 @@ def displayMenu():
 
 def getIntegerInput(prompt, minValue, maxValue):
     """
-    returns an integer or error message 
+    Parameters
+    ----------
+    prompt : string
+    minValue : int    
+    maxValue : int    
+
+    Returns
+    -------
+    userChoice: int
     """
     while True:
         try:
@@ -27,22 +41,40 @@ def getIntegerInput(prompt, minValue, maxValue):
 # math formulas
 def add(num1, num2):
     """
-    num1: int 
-    num2: int
+    Parameters
+    ----------
+    num1 : int
+    num2 : int    
+
+    Returns
+    -------
+    result of the num1 and num2 added
     """
     return num1 + num2
 
 def subtract(num1, num2):
     """
-    num1: int 
-    num2: int
+    Parameters
+    ----------
+    num1 : int
+    num2 : int    
+
+    Returns
+    -------
+    result of the num1 and num2 subtracted
     """
     return num1 - num2
 
 def divide(num1, num2):
     """
-    num1: int 
-    num2: int
+    Parameters
+    ----------
+    num1 : int
+    num2 : int    
+
+    Returns
+    -------
+    result of the num1 and num2 divided
     """
     if num2 == 0:
         return "Cannot divide by zero"
@@ -50,18 +82,33 @@ def divide(num1, num2):
 
 def multiply(num1, num2):
     """
-    num1: int 
-    num2: int
+    Parameters
+    ----------
+    num1 : int
+    num2 : int    
+
+    Returns
+    -------
+    result of the num1 and num2 multiplied
     """
     return num1 * num2
 
 # 
 def mathOperation(mathChoices, operator):
     """
-    mathChoices: a dictionary
-    operator: string
+    Parameters
+    ----------
+    mathChoices : dictionary
+    operator : string    
+
+
+    Returns
+    -------
+    None.
     """
-    num1 = getIntegerInput("Enter the first number: ", float('-inf'), float('inf')) # negative infinity (-inf), positive infinity (inf).. allows user to input any integer from neg to pos.
+
+    # negative infinity (-inf), positive infinity (inf).. allows user to input any integer from neg to pos.
+    num1 = getIntegerInput("Enter the first number: ", float('-inf'), float('inf')) 
     num2 = getIntegerInput("Enter the second number: ", float('-inf'), float('inf'))
     
     result = mathChoices(num1, num2)
@@ -70,18 +117,29 @@ def mathOperation(mathChoices, operator):
 # determine decision structure for menu choice
 def mathOption(userChoice):
     """
-    userChoice: int 
+    Parameters
+    ----------
+    userChoice : int
+
+    Returns
+    -------
+    bool
+        DESCRIPTION.
     """
-    operations = {
+    mathChoices = {
         1: ("Add", add, "+"),
         2: ("Subtract", subtract, "-"),
         3: ("Divide", divide, "/"),
         4: ("Multiply", multiply, "*")
     }
     
-    if userChoice in operations:
-        print(operations[userChoice][0])
-        mathOperation(operations[userChoice][1], operations[userChoice][2])
+    if userChoice in mathChoices:
+        print()
+        print(mathChoices[userChoice][0]) #prints math Op, ex. "Add"
+
+        # perform mathOperation() as follows for userChoice, ex. if user selected add - call add function and use following string to print 
+        mathOperation(mathChoices[userChoice][1], mathChoices[userChoice][2]) 
+
         return True
     elif userChoice == 5:
         print("Goodbye...")
@@ -90,6 +148,16 @@ def mathOption(userChoice):
 
 # second menu to determine if user wish to repeat or redirect to main menu
 def secondaryMenu():
+    """
+    Parameters
+    ----------
+    None.  
+
+    Returns
+    -------
+    bool
+        DESCRIPTION.
+    """
     while True:
         print("1. Repeat")
         print("2. Main Menu")
