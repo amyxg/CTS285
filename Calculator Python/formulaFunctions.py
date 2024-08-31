@@ -159,7 +159,7 @@ def secondaryMenu():
         DESCRIPTION.
     """
     while True:
-        print("1. Repeat")
+        print("\n1. Repeat")
         print("2. Main Menu")
         userSecChoice = getIntegerInput("Enter a number: ", 1, 2)
         

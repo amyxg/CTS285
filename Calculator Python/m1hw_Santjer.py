@@ -9,7 +9,7 @@ def main():
         userInput = f.getIntegerInput("Enter a number: ", 1, 5)
 
         while True:
-            # if user chose to exit (5), exit 
+            # if user chose to exit
             if not f.mathOption(userInput):
                 return
             #if user chose 2 in secondary menu, break the inner loop to return to the main menu (main())
