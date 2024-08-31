@@ -8,7 +8,7 @@ def main():
         f.mathOption(userInput)
         if userInput == 5:
             break
-        f.secondaryMenu()
+        f.secondaryMenu(userInput)
 
 
 

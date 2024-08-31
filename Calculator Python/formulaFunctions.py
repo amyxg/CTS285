@@ -87,7 +87,7 @@ def mathOption(userChoice):
         return 
 
 # second menu to determine if user wish to repeat or redirect to menu
-def secondaryMenu(userChoice, userSecChoice):
+def secondaryMenu(userChoice):
     """
     userChoice: int 
     userSecChoice: int
