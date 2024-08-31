@@ -10,62 +10,16 @@ def displayMenu():
     print("5. Exit")
 
 
-def checkValidInteger(userChoice):
-    """
-    returns integer value or None if not valid 
-    """
-    if userChoice.isdigit():
-        return int(userChoice)
-    else:
-        return None
-
-
 def getIntegerInput(prompt):
     """
     returns an integer or error message 
     """
     while True:
-        userChoice = input(prompt)
-        choice = checkValidInteger(userChoice)
-        if choice is not None:
-            return choice
-        else: 
-            print("Invalid option! Please enter a number") 
-
-
-# determine decision structure for menu choice
-def mathOption(userChoice):
-    while True:
-        match userChoice:
-            case 1:
-                print("Add")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} + {num2} = {add(num1, num2)}")
-            case 2: 
-                print("Subtract")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} + {num2} = {subtract(num1, num2)}")
-            case 3:
-                print("Divide")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} + {num2} = {divide(num1, num2)}")
-            case 4:
-                print("Multiply")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} + {num2} = {multiply(num1, num2)}")
-            case 5:
-                print("Goodbye...")    
-                return
-            case _:
-                # this is the default handler if none of the above cases match
-                print("Invalid option! Please enter a number from 1 to 5. ")
-                return
-        # exit match case if all are valid     
-        return 
+        try:
+            userChoice = int(input(prompt))  # Try to convert the input to an integer
+            return userChoice  # Return the integer if successful
+        except ValueError:  # Handle the exception if conversion fails
+            print("Invalid option! Please enter a valid integer.")
 
 # math formulas
 def add(num1, num2):
@@ -98,6 +52,40 @@ def multiply(num1, num2):
     """
     return num1 * num2
 
+# determine decision structure for menu choice
+def mathOption(userChoice):
+    while True:
+        match userChoice:
+            case 1:
+                print("Add")
+                num1 = getIntegerInput("Enter a number: ")
+                num2 = getIntegerInput("Enter a number: ")
+                print(f"{num1} + {num2} = {add(num1, num2)}")
+            case 2: 
+                print("Subtract")
+                num1 = getIntegerInput("Enter a number: ")
+                num2 = getIntegerInput("Enter a number: ")
+                print(f"{num1} - {num2} = {subtract(num1, num2)}")
+            case 3:
+                print("Divide")
+                num1 = getIntegerInput("Enter a number: ")
+                num2 = getIntegerInput("Enter a number: ")
+                print(f"{num1} / {num2} = {divide(num1, num2)}")
+            case 4:
+                print("Multiply")
+                num1 = getIntegerInput("Enter a number: ")
+                num2 = getIntegerInput("Enter a number: ")
+                print(f"{num1} * {num2} = {multiply(num1, num2)}")
+            case 5:
+                print("Goodbye...")    
+                return
+            case _:
+                # this is the default handler if none of the above cases match
+                print("Invalid option! Please enter a number from 1 to 5. ")
+                return
+        # exit match case if all are valid     
+        return 
+
 # second menu to determine if user wish to repeat or redirect to menu
 def secondaryMenu(userChoice, userSecChoice):
     """
@@ -108,13 +96,14 @@ def secondaryMenu(userChoice, userSecChoice):
         print("1. Repeat")
         print("2. Main Menu")
         userSecChoice = getIntegerInput("Enter a number: ")
-        
+
         match userSecChoice:
             case 1:
-                print("repeat option selected ")
+                # repeat option selected
                 mathOption(userChoice)
             case 2: 
-                displayMenu()  
+                # main menu selected
+                return 
             case _:
                 # this is the default handler if none of the abvoe cases match
                 print("ERROR! PLease enter a number from 1 to 2. ")
