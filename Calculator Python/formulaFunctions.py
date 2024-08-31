@@ -10,16 +10,19 @@ def displayMenu():
     print("5. Exit")
 
 
-def getIntegerInput(prompt):
+def getIntegerInput(prompt, minValue, maxValue):
     """
     returns an integer or error message 
     """
     while True:
         try:
-            userChoice = int(input(prompt))  # Try to convert the input to an integer
-            return userChoice  # Return the integer if successful
-        except ValueError:  # Handle the exception if conversion fails
-            print("Invalid option! Please enter a valid integer.")
+            userChoice = int(input(prompt))
+            if minValue <= userChoice <= maxValue:
+                return userChoice
+            else:
+                print(f"Please enter a number between {minValue} and {maxValue}.")
+        except ValueError:
+            print("Invalid input! Please enter a valid integer.")
 
 # math formulas
 def add(num1, num2):
@@ -52,58 +55,47 @@ def multiply(num1, num2):
     """
     return num1 * num2
 
+# 
+def mathOperation(mathChoices, operator):
+    """
+    mathChoices: a dictionary
+    operator: string
+    """
+    num1 = getIntegerInput("Enter the first number: ", float('-inf'), float('inf')) # negative infinity (-inf), positive infinity (inf).. allows user to input any integer from neg to pos.
+    num2 = getIntegerInput("Enter the second number: ", float('-inf'), float('inf'))
+    
+    result = mathChoices(num1, num2)
+    print(f"{num1} {operator} {num2} = {result}")
+
 # determine decision structure for menu choice
 def mathOption(userChoice):
-    while True:
-        match userChoice:
-            case 1:
-                print("Add")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} + {num2} = {add(num1, num2)}")
-            case 2: 
-                print("Subtract")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} - {num2} = {subtract(num1, num2)}")
-            case 3:
-                print("Divide")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} / {num2} = {divide(num1, num2)}")
-            case 4:
-                print("Multiply")
-                num1 = getIntegerInput("Enter a number: ")
-                num2 = getIntegerInput("Enter a number: ")
-                print(f"{num1} * {num2} = {multiply(num1, num2)}")
-            case 5:
-                print("Goodbye...")    
-                return
-            case _:
-                # this is the default handler if none of the above cases match
-                print("Invalid option! Please enter a number from 1 to 5. ")
-                return
-        # exit match case if all are valid     
-        return 
-
-# second menu to determine if user wish to repeat or redirect to menu
-def secondaryMenu(userChoice):
     """
     userChoice: int 
-    userSecChoice: int
     """
-    while True: 
+    operations = {
+        1: ("Add", add, "+"),
+        2: ("Subtract", subtract, "-"),
+        3: ("Divide", divide, "/"),
+        4: ("Multiply", multiply, "*")
+    }
+    
+    if userChoice in operations:
+        print(operations[userChoice][0])
+        mathOperation(operations[userChoice][1], operations[userChoice][2])
+        return True
+    elif userChoice == 5:
+        print("Goodbye...")
+        return False
+    return True
+
+# second menu to determine if user wish to repeat or redirect to main menu
+def secondaryMenu():
+    while True:
         print("1. Repeat")
         print("2. Main Menu")
-        userSecChoice = getIntegerInput("Enter a number: ")
-
-        match userSecChoice:
-            case 1:
-                # repeat option selected
-                mathOption(userChoice)
-            case 2: 
-                # main menu selected
-                return 
-            case _:
-                # this is the default handler if none of the abvoe cases match
-                print("ERROR! PLease enter a number from 1 to 2. ")
+        userSecChoice = getIntegerInput("Enter a number: ", 1, 2)
+        
+        if userSecChoice == 1:
+            return True
+        elif userSecChoice == 2:
+            return False
