@@ -27,3 +27,4 @@ install library:
 
  start installing requirements:
  - pip install flask
+ - pip freeze > requirements.txt
