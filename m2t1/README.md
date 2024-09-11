@@ -18,10 +18,10 @@ but we're using codespaces instead of PA
 install library:
 
  - first set up virutalenvironment
- - cd m2t1 (make the folder first)
+ - cd m2t1 (make the folder)
  - pip install virtualenv
  - virtualenv venv
- - source veenv/bin/activate
+ - source venv/bin/activate
  now we have our "venv" environment, so we can install things in it
  to turn it off: 
  - deactivate
@@ -34,4 +34,4 @@ install library:
  TODO: write a Flask app that does something useful!
 
  to start:
- - flask -- debug --app hello run
+ - flask --debug --app hello run
