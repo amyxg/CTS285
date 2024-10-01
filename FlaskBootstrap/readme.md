@@ -49,3 +49,4 @@ ___Once the file finishes execution, a new file called database.db will appear i
 
 # Step 6 — Displaying a Single Post
 - create a new Flask route with a view function and a new HTML template to display an individual blog post by its ID.
+
