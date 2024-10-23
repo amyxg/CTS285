@@ -8,3 +8,10 @@
 # AN notes
 - db browser for sqlite can be useful for testing
 - you could do login and leave registration for later
+
+# Start Program Instruction in CMD Terminal **note: statements in () are not to be executed in terminal**
+- python -m venv env (Create virtual environment)
+- source env/bin/activate (Activate virtual environment (Windows), you should see (env) before your @username)
+- pip install flask werkzeug
+- python userLogin.py (run program)
+- deactivate (when done with program)
